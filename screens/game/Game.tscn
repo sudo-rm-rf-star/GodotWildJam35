@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://things/machine/Machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://things/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://things/center/Center.tscn" type="PackedScene" id=3]
 [ext_resource path="res://screens/game/T_Random_39.png" type="Texture" id=4]
+[ext_resource path="res://screens/game/backdrop.png" type="Texture" id=5]
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 // Amount of detail.
@@ -46,29 +47,34 @@ void fragment() {
 	COLOR = mix(vec4(0.0), fog_color, rand(UV + motion));
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/octaves = 4
 shader_param/starting_amplitude = 0.5
 shader_param/starting_frequency = 0.1
 shader_param/shift = -0.2
-shader_param/velocity = Vector2( 0.1, 0.1 )
-shader_param/fog_color = Color( 0.286275, 0.270588, 0.537255, 1 )
+shader_param/velocity = Vector2( 0.05, 0.05 )
+shader_param/fog_color = Color( 0.203922, 0.4, 0.470588, 0.462745 )
 shader_param/noise = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 158, 10 )
 
 [node name="Node2D2" type="Node2D"]
 
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.639216 )
+position = Vector2( 596.529, -120.816 )
+texture = ExtResource( 5 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 4 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -4651.41
-margin_top = -4591.0
-margin_right = 5348.59
-margin_bottom = 5409.0
+margin_left = -4288.96
+margin_top = -4530.59
+margin_right = 5711.04
+margin_bottom = 5469.41
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,14 +89,14 @@ rotation = 0.507891
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
 position = Vector2( -1, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wall2" type="StaticBody2D" parent="Walls"]
 position = Vector2( 565, 314 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
 position = Vector2( -1, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wall3" type="StaticBody2D" parent="Walls"]
 position = Vector2( 1013.65, 380.182 )
@@ -98,7 +104,7 @@ rotation = -0.249582
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
 position = Vector2( -1, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Machine" parent="." instance=ExtResource( 1 )]
 position = Vector2( 543.673, 349.462 )
