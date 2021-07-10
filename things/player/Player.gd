@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 
-export var _friction_floor: float = .1
+export var _friction_floor: float = .2
 export var _friction_air: float = .01
-export var _speed_stop: float = 20
+export var _speed_stop: float = 50
 export var _speed: int = 1000
 export var _max_speed: float = 350.0
 export(float) var _jump_strength: float = 600
@@ -19,10 +19,13 @@ var _up: Vector2 = Vector2.ZERO
 var _was_in_air: bool = false
 var _is_jumping: bool = false
 var _can_jump: bool = false
+onready var _last_safe_location: Vector2 = position
 
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 onready var _jump_animation_player: AnimationPlayer = $JumpAnimationPlayer
 onready var _coyote_timer: Timer = $CoyoteTimer
+onready var _death_timer: Timer = $DeathTimer
+onready var camera: Camera2D = $Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +50,7 @@ func _physics_process(delta):
 		if abs(relative_velocity.x) < _speed_stop:
 			friction = 1
 			
-	print(abs(relative_velocity.x), friction)
+	printt(abs(relative_velocity.x), friction)
 	movement.x = -relative_velocity.x * friction
 
 	# Gravity
@@ -87,6 +90,10 @@ func _physics_process(delta):
 		
 	_was_in_air = !is_on_floor()
 	
+	# Save location if it is safe
+	if is_on_floor():
+		_last_safe_location = position
+	
 	_velocity = move_and_slide(_velocity, _up)
 #	print(_velocity)
 
@@ -99,8 +106,8 @@ func handle_jump() -> Vector2:
 	
 	_is_jumping = true
 	return Vector2(0, -_jump_strength)
-	
-	
+
+
 func handle_sideways_movement(delta: float, relative_velocity: Vector2) -> Vector2:
 	var _direction: Vector2 = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -119,3 +126,12 @@ func handle_animations():
 		_jump_animation_player.play("land")
 	elif is_on_floor() and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 		_animation_player.play("walk")
+	elif is_on_floor() and not _jump_animation_player.is_playing():
+		_animation_player.play("idle")
+	
+
+func die():
+	_death_timer.start()
+	yield(_death_timer, "timeout")
+	position = _last_safe_location
+	_velocity = Vector2.ZERO

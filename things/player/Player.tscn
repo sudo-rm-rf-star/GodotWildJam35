@@ -1,13 +1,14 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://things/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://things/player/christ.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30.0899, 29.8959 )
+extents = Vector2( 30.0899, 58.9868 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "idle"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
@@ -15,10 +16,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 1.4, 3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1.2 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.9 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:rotation_degrees")
@@ -39,13 +40,13 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 1.4, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 6 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "jump"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -84,7 +85,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 0.5 ), Vector2( 1, 1.5 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "land"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -111,8 +112,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 14 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "reset"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -138,8 +138,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk"
+[sub_resource type="Animation" id=6]
 length = 0.7
 step = 0.03
 tracks/0/type = "value"
@@ -353,17 +352,20 @@ tracks/2/keys = {
 "values": [  ]
 }
 
-[node name="Node2D" type="KinematicBody2D"]
+[node name="Node2D" type="KinematicBody2D" groups=[
+"player",
+]]
+position = Vector2( 0, -1.33484 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1, 0.75 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -386,11 +388,11 @@ points = PoolVector2Array( 768.538, -34.3147 )
 default_color = Color( 1, 0.960784, 0.4, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 4 )
-anims/jump = SubResource( 5 )
-anims/land = SubResource( 6 )
-anims/reset = SubResource( 2 )
-anims/walk = SubResource( 3 )
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 3 )
+anims/land = SubResource( 4 )
+anims/reset = SubResource( 5 )
+anims/walk = SubResource( 6 )
 
 [node name="JumpAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 7 )
@@ -401,4 +403,7 @@ anims/walk = SubResource( 11 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="."]
 one_shot = true
