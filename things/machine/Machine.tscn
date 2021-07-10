@@ -9,7 +9,6 @@ extents = Vector2( 93.916, 48.3541 )
 
 [node name="Machine" type="Node2D"]
 script = ExtResource( 3 )
-influencees = [ NodePath("") ]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -60.4762 )
@@ -28,3 +27,4 @@ shape = SubResource( 1 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="influence_changed" from="MachineUI" to="." method="_on_MachineUI_influence_changed"]

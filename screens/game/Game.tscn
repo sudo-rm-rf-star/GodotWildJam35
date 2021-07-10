@@ -84,6 +84,7 @@ __meta__ = {
 [node name="Platform" parent="Walls" instance=ExtResource( 6 )]
 position = Vector2( 302.723, 20.1815 )
 rotation = 0.691359
+start_path = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="Walls/Platform"]
 position = Vector2( -120.67, 152.263 )
@@ -91,6 +92,7 @@ position = Vector2( -120.67, 152.263 )
 [node name="Platform2" parent="Walls" instance=ExtResource( 6 )]
 position = Vector2( 592.034, 125.968 )
 rotation = 0.0305026
+start_path = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="Walls/Platform2"]
 position = Vector2( -116.883, 360.272 )
@@ -98,6 +100,7 @@ position = Vector2( -116.883, 360.272 )
 [node name="Platform3" parent="Walls" instance=ExtResource( 6 )]
 position = Vector2( 875.546, 36.1634 )
 rotation = -0.630275
+start_path = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="Walls/Platform3"]
 position = Vector2( 254.36, 156.42 )
@@ -105,8 +108,8 @@ position = Vector2( 254.36, 156.42 )
 [node name="Machine" parent="." instance=ExtResource( 1 )]
 position = Vector2( 600.854, 166.147 )
 rotation = 3.17457
-influencees = [ NodePath("../Walls/Wall") ]
+influencees_paths = [ NodePath("../Walls/Platform") ]
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 16.098, 341.886 )
+position = Vector2( -91.5368, 205.661 )
 _center_object = NodePath("../Center")
