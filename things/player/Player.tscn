@@ -32,4 +32,16 @@ rotating = true
 current = true
 zoom = Vector2( 2, 2 )
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Gravity" type="Line2D" parent="."]
+
+[node name="Sideways" type="Line2D" parent="."]
+points = PoolVector2Array( 768.538, -34.3147 )
+default_color = Color( 0.431373, 1, 0.4, 1 )
+
+[node name="Jump" type="Line2D" parent="."]
+points = PoolVector2Array( 768.538, -34.3147 )
+default_color = Color( 1, 0.4, 0.4, 1 )
+
+[node name="Velocity" type="Line2D" parent="."]
+points = PoolVector2Array( 768.538, -34.3147 )
+default_color = Color( 1, 0.960784, 0.4, 1 )
