@@ -1,3 +1,86 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource path="res://things/core/Core.tscn" type="PackedScene" id=1]
+[ext_resource path="res://things/earthpiece/EarthPiece.tscn" type="PackedScene" id=2]
+
+[node name="Earth" type="Node2D"]
+position = Vector2( 557.775, -129.286 )
+
+[node name="EarthPiece" parent="." instance=ExtResource( 2 )]
+
+[node name="Shape" parent="EarthPiece" index="0"]
+position = Vector2( 675.642, 484.825 )
+offset = Vector2( -217.674, -223.793 )
+polygon = PoolVector2Array( -678.91, 634.255, -1023.43, 555.353, -807.81, 198.381, -604.977, 44.6877, -231.043, -93.7309, 300.787, -123.693, 654.68, -9.71445, 528.662, 268.382, 92.6471, 173.596, -267.539, 251.321, -496.921, 384.021 )
+
+[node name="CollisionBody" parent="EarthPiece" index="1"]
+visible = false
+
+[node name="EarthPiece2" parent="." instance=ExtResource( 2 )]
+rotation = 2.0944
+
+[node name="Shape" parent="EarthPiece2" index="0"]
+position = Vector2( 963.777, -1718.11 )
+polygon = PoolVector2Array( -719.835, -145.218, -489.169, -352.1, -254.203, -407.909, 326.987, -379.103, 770.629, -166.917, 551.475, 153.62, 324.905, 68.5201, 53.5813, 34.7593, -262.906, 82.3538, -622.748, 296.275 )
+
+[node name="CollisionBody" parent="EarthPiece2" index="1"]
+visible = false
+
+[node name="EarthPiece3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 605.608, 1844.28 )
+rotation = 0.698132
+
+[node name="Shape" parent="EarthPiece3" index="0"]
+position = Vector2( -882.557, 245.944 )
+rotation = 3.14159
+polygon = PoolVector2Array( 666.177, 235.984, 888.83, 506.626, 575.337, 668.263, 372.055, 439.47 )
+
+[node name="CollisionBody" parent="EarthPiece3" index="1"]
+visible = false
+
+[node name="EarthPiece4" parent="." instance=ExtResource( 2 )]
+
+[node name="Shape" parent="EarthPiece4" index="0"]
+position = Vector2( 1472.9, 888.204 )
+rotation = 0.996583
+scale = Vector2( 0.6662, 0.884239 )
+polygon = PoolVector2Array( -900.461, 184.818, -640.454, 31.1689, -167.009, -83.9929, 239.782, -77.9493, 715.391, 36.5865, 206.3, 356.491, -299.224, 348.599, -663.847, 474.927 )
+
+[node name="CollisionBody" parent="EarthPiece4" index="1"]
+visible = false
+
+[node name="EarthPiece5" parent="." instance=ExtResource( 2 )]
+position = Vector2( -595.468, 1860.45 )
+
+[node name="Shape" parent="EarthPiece5" index="0"]
+position = Vector2( 673.876, 486.592 )
+polygon = PoolVector2Array( -313.235, -530.807, -422.764, -960.09, -78.2776, -930.058, -12.9135, -636.803, 177.879, -313.515, 416.011, -161.786, 723.367, -56.8208, 673.512, 309.507, 322.74, 172.299, 123.115, 43.3374, -129.509, -188.087 )
+
+[node name="CollisionBody" parent="EarthPiece5" index="1"]
+visible = false
+
+[node name="EarthPiece6" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1190.94, 3720.9 )
+
+[node name="Shape" parent="EarthPiece6" index="0"]
+position = Vector2( 1356.53, -360.624 )
+polygon = PoolVector2Array( 578.419, -709.227, 627.82, -1076.99, 959.904, -1126.39, 1119.29, -775.367 )
+
+[node name="CollisionBody" parent="EarthPiece6" index="1"]
+visible = false
+
+[node name="Core" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="Shape" parent="Core" index="0"]
+position = Vector2( -7.354, -12.6084 )
+color = Color( 0.94902, 0.701961, 0.0509804, 1 )
+polygon = PoolVector2Array( -213.752, 913.092, -208.498, 1212.59, -171.717, 1438.53, 43.7144, 1843.12, 311.184, 1986.8, 553.393, 2063.81, 947.474, 2021.77, 1257.48, 1669.73, 1367.83, 1359.72, 1367.83, 949.873, 1194.43, 666.134, 989.509, 513.756, 506.103, 429.685, 175.075, 508.502, -35.1018, 660.88 )
+
+[editable path="EarthPiece"]
+[editable path="EarthPiece2"]
+[editable path="EarthPiece3"]
+[editable path="EarthPiece4"]
+[editable path="EarthPiece5"]
+[editable path="EarthPiece6"]
+[editable path="Core"]
