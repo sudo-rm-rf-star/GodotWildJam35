@@ -5,18 +5,29 @@ extends KinematicBody2D
 # var a = 2
 # var b = "text"
 
-export var _speed: int = 400
+export var _speed: int = 100
+export(NodePath) var _center_object: NodePath
+
+export(float) var gravity: float = 1000.0
+
+
+var _center: Vector2 = Vector2.ZERO
 
 var _velocity = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	_center = get_node(_center_object).position
 	
 func _physics_process(delta):
 	var _direction = move_direction()
-	_velocity = move_and_slide(_velocity)
-	_velocity.x = _direction.x * _speed
+	var up: Vector2 = (_center - position).normalized()
+	
+	_velocity.x += _direction.x * _speed
+	_velocity += gravity * delta * up
+	_velocity = move_and_slide(_velocity, up)
+	
+	rotate(get_angle_to(_center) + PI / 2)
 	
 func move_direction() -> Vector2:
 	return Vector2(
