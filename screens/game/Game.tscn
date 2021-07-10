@@ -5,6 +5,7 @@
 [ext_resource path="res://things/center/Center.tscn" type="PackedScene" id=3]
 [ext_resource path="res://screens/game/T_Random_39.png" type="Texture" id=4]
 [ext_resource path="res://screens/game/backdrop.png" type="Texture" id=5]
+[ext_resource path="res://things/platform/Platform.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -57,9 +58,6 @@ shader_param/velocity = Vector2( 0.05, 0.05 )
 shader_param/fog_color = Color( 0.203922, 0.4, 0.470588, 0.462745 )
 shader_param/noise = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 158, 10 )
-
 [node name="Node2D2" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -83,32 +81,31 @@ __meta__ = {
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="Wall" type="StaticBody2D" parent="Walls"]
-position = Vector2( 104, 254 )
-rotation = 0.507891
+[node name="Platform" parent="Walls" instance=ExtResource( 6 )]
+position = Vector2( 302.723, 20.1815 )
+rotation = 0.691359
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
-position = Vector2( -1, 0 )
-shape = SubResource( 3 )
+[node name="Node2D" type="Node2D" parent="Walls/Platform"]
+position = Vector2( -120.67, 152.263 )
 
-[node name="Wall2" type="StaticBody2D" parent="Walls"]
-position = Vector2( 565, 314 )
+[node name="Platform2" parent="Walls" instance=ExtResource( 6 )]
+position = Vector2( 592.034, 125.968 )
+rotation = 0.0305026
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
-position = Vector2( -1, 0 )
-shape = SubResource( 3 )
+[node name="Node2D" type="Node2D" parent="Walls/Platform2"]
+position = Vector2( -116.883, 360.272 )
 
-[node name="Wall3" type="StaticBody2D" parent="Walls"]
-position = Vector2( 1013.65, 380.182 )
-rotation = -0.249582
+[node name="Platform3" parent="Walls" instance=ExtResource( 6 )]
+position = Vector2( 875.546, 36.1634 )
+rotation = -0.630275
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
-position = Vector2( -1, 0 )
-shape = SubResource( 3 )
+[node name="Node2D" type="Node2D" parent="Walls/Platform3"]
+position = Vector2( 254.36, 156.42 )
 
 [node name="Machine" parent="." instance=ExtResource( 1 )]
-position = Vector2( 543.673, 349.462 )
-rotation = 3.17301
+position = Vector2( 600.854, 166.147 )
+rotation = 3.17457
+influencees = [ NodePath("../Walls/Wall") ]
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 16.098, 341.886 )
