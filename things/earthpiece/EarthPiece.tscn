@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="EarthPiece" type="Node2D"]
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Shape" type="Polygon2D" parent="."]
+position = Vector2( 405.774, 403.149 )
+color = Color( 0.227451, 0.176471, 0.172549, 1 )
+offset = Vector2( -216.674, -223.793 )
+polygon = PoolVector2Array( -183.76, -123.522, -108.005, -161.703, 24.7166, -173.217, 223.496, -175.641, 348.339, -161.703, 428.336, -134.431, 429.943, 139.625, 362.862, 52.9246, 289.451, 7.99239, 177.437, -10.9931, 60.3604, -10.9931, -41.528, 10.5238, -128.228, 63.0501, -189.614, 139.625 )
+
+[node name="CollisionBody" type="StaticBody2D" parent="."]
+position = Vector2( 808.208, 182.809 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionBody"]
+position = Vector2( -1.99756, 0 )
+polygon = PoolVector2Array( -189.183, -109.328, -803.416, -101.424, -807.933, -177.074, -187.819, -182.071 )
