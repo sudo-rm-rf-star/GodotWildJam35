@@ -1,25 +1,79 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://things/machine/Machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://things/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://things/center/Center.tscn" type="PackedScene" id=3]
+[ext_resource path="res://screens/game/T_Random_39.png" type="Texture" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 62.2896
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+// Amount of detail.
+uniform int octaves = 4;
+
+// Opacity of the output fog.
+uniform float starting_amplitude: hint_range(0.0, 0.5) = 0.5;
+
+// Rate of pattern within the fog.
+uniform float starting_frequency = 1.0;
+
+// Shift towards transparency (clamped) for sparser fog.
+uniform float shift: hint_range(-1.0, 0.0) = -0.2;
+
+// Direction and speed of travel.
+uniform vec2 velocity = vec2(1.0, 1.0);
+
+// Color of the fog.
+uniform vec4 fog_color: hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+// Noise texture; OpenSimplexNoise is great, but any filtered texture is fine.
+uniform sampler2D noise;
+
+float rand(vec2 uv) {
+	float amplitude = starting_amplitude;
+	float frequency = starting_frequency;
+	float output = 0.0;
+	for (int i = 0; i < octaves; i++) {
+		output += texture(noise, uv * frequency).x * amplitude;
+		amplitude /= 2.0;
+		frequency *= 2.0;
+	}
+	return clamp(output + shift, 0.0, 1.0);
+}
+
+void fragment() {
+	vec2 motion = vec2(rand(UV + TIME * starting_frequency * velocity));
+	COLOR = mix(vec4(0.0), fog_color, rand(UV + motion));
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/octaves = 4
+shader_param/starting_amplitude = 0.5
+shader_param/starting_frequency = 0.1
+shader_param/shift = -0.2
+shader_param/velocity = Vector2( 0.1, 0.1 )
+shader_param/fog_color = Color( 0.286275, 0.270588, 0.537255, 1 )
+shader_param/noise = ExtResource( 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 158, 10 )
 
 [node name="Node2D2" type="Node2D"]
 
-[node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 16.098, 341.886 )
-_center_object = NodePath("../StaticBody2D")
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4651.41
+margin_top = -4591.0
+margin_right = 5348.59
+margin_bottom = 5409.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 552.165, -307.207 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -4.23795, 10.5946 )
-shape = SubResource( 1 )
+[node name="Center" parent="." instance=ExtResource( 3 )]
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -45,3 +99,11 @@ rotation = -0.249582
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
 position = Vector2( -1, 0 )
 shape = SubResource( 2 )
+
+[node name="Machine" parent="." instance=ExtResource( 1 )]
+position = Vector2( 543.673, 349.462 )
+rotation = 3.17301
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 16.098, 341.886 )
+_center_object = NodePath("../Center")
