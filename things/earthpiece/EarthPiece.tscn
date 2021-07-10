@@ -1,6 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://things/earthpiece/EarthPiece.gd" type="Script" id=1]
 
 [node name="EarthPiece" type="Node2D"]
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
@@ -17,3 +20,5 @@ position = Vector2( 808.208, 182.809 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionBody"]
 position = Vector2( -1.99756, 0 )
 polygon = PoolVector2Array( -189.183, -109.328, -803.416, -101.424, -807.933, -177.074, -187.819, -182.071 )
+
+[node name="PointInitial" type="Node2D" parent="."]
