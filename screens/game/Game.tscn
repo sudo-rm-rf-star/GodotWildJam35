@@ -69,46 +69,44 @@ texture = ExtResource( 5 )
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -4288.96
-margin_top = -4530.59
-margin_right = 5711.04
-margin_bottom = 5469.41
+margin_left = -4309.12
+margin_top = -4351.68
+margin_right = 5690.88
+margin_bottom = 5648.32
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Center" parent="." instance=ExtResource( 3 )]
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="Platforms" type="Node2D" parent="."]
 
-[node name="Platform" parent="Walls" instance=ExtResource( 6 )]
+[node name="Platform" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( 302.723, 20.1815 )
 rotation = 0.691359
-start_path = NodePath("Node2D")
 
-[node name="Node2D" type="Node2D" parent="Walls/Platform"]
+[node name="Start" type="Node2D" parent="Platforms/Platform"]
 position = Vector2( -120.67, 152.263 )
 
-[node name="Platform2" parent="Walls" instance=ExtResource( 6 )]
+[node name="Platform2" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( 592.034, 125.968 )
 rotation = 0.0305026
-start_path = NodePath("Node2D")
 
-[node name="Node2D" type="Node2D" parent="Walls/Platform2"]
-position = Vector2( -116.883, 360.272 )
+[node name="Machine" parent="Platforms/Platform2" instance=ExtResource( 1 )]
+position = Vector2( 10.0416, 39.8912 )
+rotation = -3.13912
+scale = Vector2( 1, 1 )
+influencees_paths = [ NodePath("../../Platform"), NodePath("../../Platform2"), NodePath("../../Platform3") ]
 
-[node name="Platform3" parent="Walls" instance=ExtResource( 6 )]
+[node name="Start" type="Node2D" parent="Platforms/Platform2"]
+position = Vector2( -10.3755, 228.673 )
+
+[node name="Platform3" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( 875.546, 36.1634 )
 rotation = -0.630275
-start_path = NodePath("Node2D")
 
-[node name="Node2D" type="Node2D" parent="Walls/Platform3"]
-position = Vector2( 254.36, 156.42 )
-
-[node name="Machine" parent="." instance=ExtResource( 1 )]
-position = Vector2( 600.854, 166.147 )
-rotation = 3.17457
-influencees_paths = [ NodePath("../Walls/Platform") ]
+[node name="Start" type="Node2D" parent="Platforms/Platform3"]
+position = Vector2( 82.8962, 234.243 )
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( -91.5368, 205.661 )
