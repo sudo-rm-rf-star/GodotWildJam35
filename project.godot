@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "MachineUI",
+"language": "GDScript",
+"path": "res://things/machine_ui/MachineUI.gd"
+} ]
 _global_script_class_icons={
-
+"MachineUI": ""
 }
 
 [application]
