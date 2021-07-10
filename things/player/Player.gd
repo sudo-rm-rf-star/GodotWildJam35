@@ -1,25 +1,28 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export var _friction_floor: float = .1
 export var _friction_air: float = .01
-export var _speed_stop: float = 1
-export var _speed: int = 800
-export var _max_speed: float = 250.0
-export(float) var _jump_strength: float = 300
+export var _speed_stop: float = 20
+export var _speed: int = 1000
+export var _max_speed: float = 350.0
+export(float) var _jump_strength: float = 600
 export(NodePath) var _center_object: NodePath
 
-export(float) var gravity: float = 600.0
+export(float) var gravity: float = 1000.0
 
 
 var _center: Vector2 = Vector2.ZERO
 
 var _velocity = Vector2.ZERO
 var _up: Vector2 = Vector2.ZERO
+var _was_in_air: bool = false
+var _is_jumping: bool = false
+var _can_jump: bool = false
+
+onready var _animation_player: AnimationPlayer = $AnimationPlayer
+onready var _jump_animation_player: AnimationPlayer = $JumpAnimationPlayer
+onready var _coyote_timer: Timer = $CoyoteTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,16 +35,19 @@ func _physics_process(delta):
 	_up = -Vector2.UP.rotated(new_rotation)
 	
 	var movement: Vector2 = Vector2.ZERO
-	var relative_velocity =  _velocity.rotated(-rotation)
-	print(relative_velocity)
+	var relative_velocity = _velocity.rotated(-rotation)
+#	print(relative_velocity)
 	$Velocity.points = PoolVector2Array([Vector2(0, 0), relative_velocity])
 	
 	# Friction
 	var friction = _friction_air
-	if abs(relative_velocity.x) < _speed_stop:
-		friction = 1
-	elif is_on_floor():
+	if is_on_floor() and not (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 		friction = _friction_floor
+		
+		if abs(relative_velocity.x) < _speed_stop:
+			friction = 1
+			
+	print(abs(relative_velocity.x), friction)
 	movement.x = -relative_velocity.x * friction
 
 	# Gravity
@@ -60,26 +66,38 @@ func _physics_process(delta):
 	movement += jump
 	
 	
-	if is_on_floor():
-		print("FLOOR")
-	if is_on_wall():
-		print("WALL")
-	if is_on_ceiling():
-		print("CEILING")
+#	if is_on_floor():
+#		print("FLOOR")
+#	if is_on_wall():
+#		print("WALL")
+#	if is_on_ceiling():
+#		print("CEILING")
 	
-	var _rotated_movement = movement.rotated(rotation)
+	var upright_velocity = _velocity.rotated(-rotation)
+	upright_velocity += movement
+	
+	upright_velocity.x = clamp(upright_velocity.x, -_max_speed, _max_speed)
 
-	_velocity += _rotated_movement
+	_velocity = upright_velocity.rotated(rotation)
+	
+	handle_animations()
+	
+	if not _was_in_air and not is_on_floor():
+		_coyote_timer.start()
+		
+	_was_in_air = !is_on_floor()
+	
 	_velocity = move_and_slide(_velocity, _up)
-	print(_velocity)
-
+#	print(_velocity)
 
 
 func handle_jump() -> Vector2:
-		
 	if not Input.is_action_just_pressed("jump"):
 		return Vector2.ZERO
+	if not is_on_floor() and _coyote_timer.is_stopped():
+		return Vector2.ZERO
 	
+	_is_jumping = true
 	return Vector2(0, -_jump_strength)
 	
 	
@@ -90,3 +108,14 @@ func handle_sideways_movement(delta: float, relative_velocity: Vector2) -> Vecto
 	)
 	
 	return _direction * _speed * delta
+
+
+func handle_animations():
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		_jump_animation_player.play("jump")
+		_animation_player.play("reset")
+	elif is_on_floor() and _was_in_air:
+		_animation_player.play("reset")
+		_jump_animation_player.play("land")
+	elif is_on_floor() and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
+		_animation_player.play("walk")

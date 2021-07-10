@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://things/machine_ui/MachineUI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://things/machine/Stonehenge.png" type="Texture" id=2]
 [ext_resource path="res://things/machine/Machine.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -11,6 +11,8 @@ extents = Vector2( 93.916, 48.3541 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -60.4762 )
+scale = Vector2( 0.35996, 0.35996 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
