@@ -90,18 +90,17 @@ __meta__ = {
 }
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1854.52, -531.618 )
+position = Vector2( 1928.33, -544.712 )
 _center_object = NodePath("../Center")
 
 [node name="Center" parent="." instance=ExtResource( 3 )]
 scale = Vector2( 2.24, 2.24 )
 
-[node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 668.407, -2328.76 )
-_center_object = NodePath("../Center")
-
 [node name="Platforms" type="Node2D" parent="."]
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
 _center_object = NodePath("../Center")
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 6 )]
