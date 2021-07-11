@@ -11,7 +11,7 @@ export(String, MULTILINE) var flavour_text: String
 
 onready var _tween: Tween = $Tween
 onready var _container: Control = $CenterContainer
-onready var _name_label: Label = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/MachineName
+onready var _name_label: Label = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MachineName
 
 
 func set_machine_name(new_machine_name: String):
@@ -21,17 +21,20 @@ func set_machine_name(new_machine_name: String):
 
 func activate():
 	_container.show()
+	_tween.remove_all()
 	_tween.interpolate_property(_container, "modulate:a", 0, 1, .4)
 	_tween.start()
 
 
 func deactivate():
+	_tween.remove_all()
 	_tween.interpolate_property(_container, "modulate:a", _container.modulate.a, 0, .4)
 	_tween.start()
 	
 	yield(_tween, "tween_all_completed")
 	
-	_container.hide()
+	if _container.modulate.a == 0:
+		_container.hide()
 
 
 func _on_HSlider_value_changed(value):
