@@ -43,7 +43,7 @@ edge_material = SubResource( 1 )
 normal_range = SubResource( 2 )
 weld = true
 render = true
-z_index = 0
+z_index = 1
 offset = 0.4
 
 [sub_resource type="Resource" id=4]
