@@ -1,7 +1,13 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://things/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://things/player/christ.png" type="Texture" id=2]
+[ext_resource path="res://things/player/walk.wav" type="AudioStream" id=3]
+[ext_resource path="res://things/player/land2.wav" type="AudioStream" id=4]
+[ext_resource path="res://things/player/jump2.wav" type="AudioStream" id=5]
+[ext_resource path="res://things/player/jump1.wav" type="AudioStream" id=6]
+[ext_resource path="res://things/RandomAudioPlayer/RandomAudioPlayer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://things/player/die.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.0899, 58.9868 )
@@ -352,6 +358,18 @@ tracks/2/keys = {
 "values": [  ]
 }
 
+[sub_resource type="AudioStreamRandomPitch" id=12]
+audio_stream = ExtResource( 4 )
+random_pitch = 1.23
+
+[sub_resource type="AudioStreamRandomPitch" id=13]
+audio_stream = ExtResource( 5 )
+random_pitch = 1.2
+
+[sub_resource type="AudioStreamRandomPitch" id=14]
+audio_stream = ExtResource( 6 )
+random_pitch = 1.2
+
 [node name="Node2D" type="KinematicBody2D" groups=[
 "player",
 ]]
@@ -373,20 +391,25 @@ current = true
 zoom = Vector2( 2, 2 )
 
 [node name="Gravity" type="Line2D" parent="."]
+visible = false
 
 [node name="Sideways" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( 768.538, -34.3147 )
 default_color = Color( 0.431373, 1, 0.4, 1 )
 
 [node name="Jump" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( 768.538, -34.3147 )
 default_color = Color( 1, 0.4, 0.4, 1 )
 
 [node name="Velocity" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( 768.538, -34.3147 )
 default_color = Color( 1, 0.960784, 0.4, 1 )
 
 [node name="Up" type="Line2D" parent="."]
+visible = false
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -404,8 +427,33 @@ anims/reset = SubResource( 10 )
 anims/walk = SubResource( 11 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 2.811
+bus = "Sound"
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 12 )
+bus = "Sound"
+
+[node name="Jump2" parent="." instance=ExtResource( 7 )]
+
+[node name="Jump2" type="AudioStreamPlayer" parent="Jump2"]
+stream = SubResource( 13 )
+volume_db = -2.811
+bus = "Sound"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Jump2"]
+stream = SubResource( 14 )
+volume_db = -2.108
+bus = "Sound"
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -7.73

@@ -27,6 +27,11 @@ onready var _coyote_timer: Timer = $CoyoteTimer
 onready var _death_timer: Timer = $DeathTimer
 onready var camera: Camera2D = $Camera2D
 
+onready var _walk_audio: AudioStreamPlayer = $Walk
+onready var _land_audio: AudioStreamPlayer = $Land
+onready var _jump_audio: RandomStreamPlayer = $Jump2
+onready var _die_audio: AudioStreamPlayer = $Die
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_center = get_node(_center_object).position
@@ -74,12 +79,12 @@ func _physics_process(delta):
 	$Jump.points = PoolVector2Array([Vector2(0, 0), jump * 10])
 	movement += jump
 	
-	if is_on_floor():
-		print("FLOOR")
-	if is_on_wall():
-		print("WALL")
-	if is_on_ceiling():
-		print("CEILING")
+#	if is_on_floor():
+#		print("FLOOR")
+#	if is_on_wall():
+#		print("WALL")
+#	if is_on_ceiling():
+#		print("CEILING")
 	
 	var upright_velocity = _velocity.rotated(-rotation)
 	upright_velocity += movement
@@ -88,10 +93,12 @@ func _physics_process(delta):
 
 	_velocity = upright_velocity.rotated(rotation)
 	
-	handle_animations()
-	
 	if not _was_in_air and not is_on_floor():
+		_coyote_timer
 		_coyote_timer.start()
+		
+	handle_animations()
+	handle_audio()
 		
 	_was_in_air = !is_on_floor()
 	
@@ -124,20 +131,35 @@ func handle_sideways_movement(delta: float, relative_velocity: Vector2) -> Vecto
 
 
 func handle_animations():
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
+	if (is_on_floor() or not _coyote_timer.is_stopped()) and Input.is_action_just_pressed("jump"):
 		_jump_animation_player.play("jump")
 		_animation_player.play("reset")
-	elif is_on_floor() and _was_in_air:
+	elif is_on_floor() and _was_in_air and _coyote_timer.is_stopped():
 		_animation_player.play("reset")
 		_jump_animation_player.play("land")
 	elif is_on_floor() and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 		_animation_player.play("walk")
 	elif is_on_floor() and not _jump_animation_player.is_playing():
 		_animation_player.play("idle")
+
+
+func handle_audio():
+	if (is_on_floor() or not _coyote_timer.is_stopped()) and Input.is_action_just_pressed("jump"):
+		_jump_audio.play()
+		
+	if is_on_floor() and _was_in_air and _coyote_timer.is_stopped():
+		_land_audio.play()
+	
+	if (is_on_floor() or not _coyote_timer.is_stopped()) and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
+		if not _walk_audio.playing:
+			_walk_audio.play()
+	else:
+		_walk_audio.stop()
 	
 
 func die():
 	_death_timer.start()
+	_die_audio.play()
 	yield(_death_timer, "timeout")
 	position = _last_safe_location
 	_velocity = Vector2.ZERO

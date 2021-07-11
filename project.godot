@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/rmsmartshape/RMSmartShapeAnchor2D.gd"
 }, {
+"base": "Node2D",
+"class": "RandomStreamPlayer",
+"language": "GDScript",
+"path": "res://things/RandomAudioPlayer/RandomAudioPlayer.gd"
+}, {
 "base": "Node",
 "class": "SS2D_Common_Functions",
 "language": "GDScript",
@@ -132,6 +137,7 @@ _global_script_class_icons={
 "RMS2D_VertexPropertiesArray": "",
 "RMSmartShape2D": "res://addons/rmsmartshape/assets/LEGACY_shape.png",
 "RMSmartShapeAnchor2D": "res://addons/rmsmartshape/assets/LEGACY_shape_anchor.png",
+"RandomStreamPlayer": "",
 "SS2D_Common_Functions": "",
 "SS2D_Edge": "",
 "SS2D_Material_Edge": "",
@@ -158,7 +164,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/rmsmartshape/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [input]
 
