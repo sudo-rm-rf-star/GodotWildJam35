@@ -56,6 +56,8 @@ func do_hover():
 	_hover.start()
 
 func set_influence(value):
+	if value == 1:
+		$Sterretjes.emitting = true
 	var new_position = lerp(_start, _destination, value)
 	_influence_value = value
 	_hover.remove_all()
