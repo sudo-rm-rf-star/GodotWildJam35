@@ -52,7 +52,8 @@ func _on_Area2D_body_entered(body: PhysicsBody2D):
 	_ui.activate()
 	
 	var camera = body.camera
-	_saved_camera_zoom = camera.zoom
+	if not _tween.is_active():
+		_saved_camera_zoom = camera.zoom
 	
 	_tween.remove_all()
 	_tween.interpolate_property(camera, "zoom", camera.zoom, _zoom_out, .4, Tween.TRANS_SINE)
