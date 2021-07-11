@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://things/machine/Machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://things/player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://screens/game/music.ogg" type="AudioStream" id=10]
 [ext_resource path="res://screens/game/wind.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Art assets/taj mahal/taj mahal.png" type="Texture" id=12]
+[ext_resource path="res://things/dialog_ui/piramid.ogg" type="AudioStream" id=13]
+[ext_resource path="res://things/dialog_ui/stonehendge.ogg" type="AudioStream" id=14]
+[ext_resource path="res://things/dialog_ui/taj.ogg" type="AudioStream" id=15]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -61,7 +64,7 @@ shader_param/starting_amplitude = 0.5
 shader_param/starting_frequency = 0.1
 shader_param/shift = -0.2
 shader_param/velocity = Vector2( 0.05, 0.05 )
-shader_param/fog_color = Color( 0.0627451, 0.262745, 0.333333, 0.698039 )
+shader_param/fog_color = Color( 0.0627451, 0.262745, 0.333333, 0.862745 )
 shader_param/noise = ExtResource( 4 )
 
 [node name="Node2D2" type="Node2D"]
@@ -80,32 +83,28 @@ __meta__ = {
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -4927.39
-margin_top = -4603.83
-margin_right = 5072.61
-margin_bottom = 5396.17
+margin_left = -7396.6
+margin_top = -6953.18
+margin_right = 7603.4
+margin_bottom = 8046.82
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1854.52, -531.618 )
+position = Vector2( -911.672, 1953.37 )
 _center_object = NodePath("../Center")
 
 [node name="Center" parent="." instance=ExtResource( 3 )]
 scale = Vector2( 2.24, 2.24 )
-
-[node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 668.407, -2328.76 )
-_center_object = NodePath("../Center")
 
 [node name="Platforms" type="Node2D" parent="."]
 script = ExtResource( 9 )
 _center_object = NodePath("../Center")
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( -15.5412, -1629.26 )
+position = Vector2( -93.4531, -1647.24 )
 
 [node name="Platform2" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( -1574.92, -1525.05 )
@@ -113,10 +112,18 @@ rotation = -0.61874
 _index = 8.0
 
 [node name="Stonehenge" parent="Platforms/Platform2" instance=ExtResource( 1 )]
-position = Vector2( 9.33087, -176.656 )
-z_index = -1
+position = Vector2( 0.723694, -133.094 )
 machine_sprite = ExtResource( 8 )
-machine_name = "Stone Henge"
+machine_name = "Stonehenge"
+flavor_text = "Ah Stonehenge. You remember hanging out with the druids back in the days.
+
+It is only now you notice the control panel on the back of one of the stones.
+
+Maybe you never saw the panel because you were not looking for it?
+
+An enormous lever draws your attention..."
+audio = ExtResource( 14 )
+initial_influence = 1.0
 influencees_paths = [ NodePath("../../Platform"), NodePath("../../Platform2"), NodePath("../../Platform8") ]
 
 [node name="Platform3" parent="Platforms" instance=ExtResource( 6 )]
@@ -135,10 +142,14 @@ rotation = 1.29259
 _index = 2.0
 
 [node name="Taj Mahal" parent="Platforms/Platform5" instance=ExtResource( 1 )]
-position = Vector2( 7.67746, -45.1466 )
+position = Vector2( -0.105499, -86.6343 )
 machine_sprite = ExtResource( 12 )
-machine_name = "Pyramidamidamids"
-flavor_text = "TEMPELS!"
+machine_name = "Taj Mahal"
+flavor_text = "You see the great dome of the Taj Mahal and recall siting in its shade enjoying reading an ancient Indian book.
+
+The dome... seems to be able to rotate! Try turning it, maybe it does something."
+audio = ExtResource( 15 )
+initial_influence = 1.0
 influencees_paths = [ NodePath("../../Platform4"), NodePath(".."), NodePath("../../Platform6") ]
 
 [node name="Platform6" parent="Platforms" instance=ExtResource( 6 )]
@@ -160,14 +171,17 @@ position = Vector2( -712.543, 1402.58 )
 _index = 5.0
 
 [node name="Pyramids" parent="Platforms/Platform9" instance=ExtResource( 1 )]
-position = Vector2( -7.31314, -143.761 )
+position = Vector2( 4.6561, -109.709 )
 machine_sprite = ExtResource( 7 )
-machine_name = "Pyramidamidamids"
-flavor_text = "This is a piramid"
-influencees_paths = [ NodePath("../../Platform3"), NodePath(".."), NodePath("../../Platform7") ]
+machine_name = "Great Pyramids"
+flavor_text = "On the top of the middle pyramid, you see a sundial.
 
-[node name="Start" type="Node2D" parent="Platforms/Platform9"]
-position = Vector2( -3.03882, -672.227 )
+Wait, that is not a normal sundial! It is a large lever.
+
+Do you want to pull it? Should you?"
+audio = ExtResource( 13 )
+initial_influence = 0.4
+influencees_paths = [ NodePath("../../Platform3"), NodePath(".."), NodePath("../../Platform7") ]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )

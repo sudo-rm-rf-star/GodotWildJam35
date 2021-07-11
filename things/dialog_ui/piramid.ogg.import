@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/piramid.ogg-b6e33231e6993c769331a3201a940dc5.oggstr"
+
+[deps]
+
+source_file="res://things/dialog_ui/piramid.ogg"
+dest_files=[ "res://.import/piramid.ogg-b6e33231e6993c769331a3201a940dc5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

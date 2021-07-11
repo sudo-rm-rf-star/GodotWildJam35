@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stonehendge.ogg-38813477f1468a08d80558b03b7e8f3f.oggstr"
+
+[deps]
+
+source_file="res://things/dialog_ui/stonehendge.ogg"
+dest_files=[ "res://.import/stonehendge.ogg-38813477f1468a08d80558b03b7e8f3f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
