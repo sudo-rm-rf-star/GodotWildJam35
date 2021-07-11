@@ -4,6 +4,7 @@ export(Texture) var machine_sprite: Texture
 export(String) var machine_name: String
 export(String, MULTILINE) var flavor_text: String
 export(AudioStream) var audio: AudioStream
+export(float, 0, 1, 0.2) var initial_influence = 0.0
 
 onready var _ui: MachineUI = $MachineUI
 onready var _tween: Tween = $Tween
@@ -14,7 +15,7 @@ onready var _off_audio: AudioStreamPlayer = $Off
 
 
 var _saved_camera_zoom: Vector2
-var _zoom_out: Vector2 = Vector2(5, 5)
+var _zoom_out: Vector2 = Vector2(6.5, 6.5)
 
 export(Array, NodePath) var influencees_paths: Array
 var influencees 
@@ -22,7 +23,7 @@ var influencees
 
 func _ready():
 	_sprite.texture = machine_sprite
-	_ui.machine_name = machine_name
+	_ui.init(machine_name, initial_influence)
 	
 	_dialog.text = flavor_text
 	_dialog.title = machine_name
@@ -35,6 +36,7 @@ func _process(delta):
 		for influencee_path in influencees_paths:
 			var influencee = get_node(influencee_path)
 			influencees.append(influencee)
+		_on_MachineUI_influence_changed(initial_influence)
 
 
 func _on_Area2D_body_entered(body: PhysicsBody2D):
@@ -81,6 +83,9 @@ func _on_Area2D_body_exited(body):
 
 
 func _on_MachineUI_influence_changed(value):
+	if not influencees:
+		return
+		
 	for influencee in influencees:
 		influencee.set_influence(value)
 

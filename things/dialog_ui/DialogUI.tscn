@@ -132,5 +132,6 @@ stream = SubResource( 6 )
 volume_db = -4.216
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "Sound"
 
 [connection signal="gui_input" from="CenterContainer" to="." method="_on_CenterContainer_gui_input"]

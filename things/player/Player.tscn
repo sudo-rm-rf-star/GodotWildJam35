@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://things/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://things/player/christ.png" type="Texture" id=2]
+[ext_resource path="res://Art assets/christ/christ.png" type="Texture" id=2]
 [ext_resource path="res://things/player/walk.wav" type="AudioStream" id=3]
 [ext_resource path="res://things/player/land2.wav" type="AudioStream" id=4]
 [ext_resource path="res://things/player/jump2.wav" type="AudioStream" id=5]
@@ -388,7 +388,7 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 rotating = true
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 2.5, 2.5 )
 
 [node name="Gravity" type="Line2D" parent="."]
 visible = false
