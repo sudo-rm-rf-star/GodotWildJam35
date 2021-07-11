@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://things/machine_ui/Righteous-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://things/machine_ui/Bungee-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://things/dialog_ui/DialogUI.gd" type="Script" id=3]
+[ext_resource path="res://things/dialog_ui/click.wav" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.427451, 0.32549, 0.0941176, 1 )
@@ -32,13 +33,16 @@ shadow_offset = Vector2( 0, 3 )
 size = 24
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 19
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 14
 font_data = ExtResource( 1 )
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 4 )
 
 [node name="DialogUI" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -108,7 +112,7 @@ margin_top = 52.0
 margin_right = 560.0
 margin_bottom = 77.0
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 4 )
 tab_size = 15
 fit_content_height = true
 
@@ -116,12 +120,17 @@ fit_content_height = true
 margin_top = 96.0
 margin_right = 560.0
 margin_bottom = 114.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.729412, 0.658824, 0.52549, 1 )
 text = "Click to continue"
 align = 1
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 6 )
+volume_db = -4.216
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="gui_input" from="CenterContainer" to="." method="_on_CenterContainer_gui_input"]

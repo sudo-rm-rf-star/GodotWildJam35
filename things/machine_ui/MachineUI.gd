@@ -12,6 +12,7 @@ export(String, MULTILINE) var flavour_text: String
 onready var _tween: Tween = $Tween
 onready var _container: Control = $CenterContainer
 onready var _name_label: Label = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer/MachineName
+onready var _click_audio: AudioStreamPlayer = $Click
 
 
 func set_machine_name(new_machine_name: String):
@@ -38,5 +39,6 @@ func deactivate():
 
 
 func _on_HSlider_value_changed(value):
+	_click_audio.play()
 	print(machine_name, " new influence: ", value)
 	emit_signal("influence_changed", value)

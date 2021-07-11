@@ -14,6 +14,7 @@ onready var _title: Label = $CenterContainer/PanelContainer/MarginContainer/VBox
 onready var _tween: Tween = $Tween
 onready var _audio: AudioStreamPlayer = $AudioStreamPlayer
 onready var _container: Control = $CenterContainer
+onready var _click_player: AudioStreamPlayer = $Click
 
 
 func activate():
@@ -49,6 +50,8 @@ func _on_CenterContainer_gui_input(event):
 	_tween.remove_all()
 	_tween.interpolate_property(_container, "modulate:a", _container.modulate.a, 0, .4)
 	_tween.start()
+	
+	_click_player.play()
 	
 	yield(_tween, "tween_all_completed")
 	emit_signal("dismissed")

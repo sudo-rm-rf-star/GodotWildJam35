@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://things/machine_ui/MachineUI.gd" type="Script" id=1]
 [ext_resource path="res://things/machine_ui/Bungee-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://things/machine_ui/Righteous-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://things/dialog_ui/click.wav" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.427451, 0.32549, 0.0941176, 1 )
@@ -35,6 +36,9 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=4]
 size = 14
 font_data = ExtResource( 3 )
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 4 )
 
 [node name="MachineUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -111,4 +115,9 @@ step = 0.2
 tick_count = 6
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 6 )
+volume_db = -8.432
+
 [connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]

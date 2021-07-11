@@ -9,6 +9,8 @@ onready var _ui: MachineUI = $MachineUI
 onready var _tween: Tween = $Tween
 onready var _sprite: Sprite = $Sprite
 onready var _dialog: DialogUI = $DialogUI
+onready var _on_audio: AudioStreamPlayer = $On
+onready var _off_audio: AudioStreamPlayer = $Off
 
 
 var _saved_camera_zoom: Vector2
@@ -33,7 +35,7 @@ func _process(delta):
 		for influencee_path in influencees_paths:
 			var influencee = get_node(influencee_path)
 			influencees.append(influencee)
-			influencee.position = influencee.start
+
 
 func _on_Area2D_body_entered(body: PhysicsBody2D):
 	if not body.is_in_group("player"):
@@ -42,11 +44,14 @@ func _on_Area2D_body_entered(body: PhysicsBody2D):
 	if is_instance_valid(_dialog):
 		_dialog.activate()
 		yield(_dialog, "dismissed")
+		
+	_on_audio.play()
 	
 	_ui.activate()
 	
 	var camera = body.camera
-	_saved_camera_zoom = camera.zoom
+	if not _tween.is_active():
+		_saved_camera_zoom = camera.zoom
 	
 	_tween.remove_all()
 	_tween.interpolate_property(camera, "zoom", camera.zoom, _zoom_out, .4, Tween.TRANS_SINE)
@@ -61,6 +66,8 @@ func _on_Area2D_body_exited(body):
 	if is_instance_valid(_dialog):
 		_dialog.deactivate()
 		return
+	
+	_off_audio.play()
 
 	_ui.deactivate()
 	

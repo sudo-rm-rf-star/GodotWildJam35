@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/off.wav-90021b927251e7826c29b8f11210c89c.sample"
+
+[deps]
+
+source_file="res://things/machine/off.wav"
+dest_files=[ "res://.import/off.wav-90021b927251e7826c29b8f11210c89c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
