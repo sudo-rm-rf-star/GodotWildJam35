@@ -8,7 +8,7 @@
 [ext_resource path="res://things/machine/on.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 93.916, 148.98 )
+extents = Vector2( 93.916, 48.3541 )
 
 [node name="Machine" type="Node2D"]
 script = ExtResource( 3 )
@@ -33,12 +33,10 @@ shape = SubResource( 1 )
 [node name="On" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -7.027
-bus = "Sound"
 
 [node name="Off" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -8.481
-bus = "Sound"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

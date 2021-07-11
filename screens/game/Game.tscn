@@ -101,6 +101,9 @@ scale = Vector2( 2.24, 2.24 )
 
 [node name="Platforms" type="Node2D" parent="."]
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
 _center_object = NodePath("../Center")
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 6 )]
