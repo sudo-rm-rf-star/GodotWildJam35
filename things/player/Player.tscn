@@ -10,7 +10,7 @@
 [ext_resource path="res://things/player/die.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30.0899, 58.9868 )
+extents = Vector2( 44.4516, 130.258 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"

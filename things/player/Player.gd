@@ -6,7 +6,7 @@ export var _friction_air: float = .01
 export var _speed_stop: float = 50
 export var _speed: int = 1000
 export var _max_speed: float = 350.0
-export(float) var _jump_strength: float = 600
+export(float) var _jump_strength: float = 900
 export(NodePath) var _center_object: NodePath
 
 export(float) var gravity: float = 1000.0
