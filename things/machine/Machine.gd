@@ -35,7 +35,7 @@ func _process(delta):
 		for influencee_path in influencees_paths:
 			var influencee = get_node(influencee_path)
 			influencees.append(influencee)
-			influencee.position = influencee.start
+
 
 func _on_Area2D_body_entered(body: PhysicsBody2D):
 	if not body.is_in_group("player"):

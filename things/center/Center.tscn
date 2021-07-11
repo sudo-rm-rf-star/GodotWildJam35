@@ -7,7 +7,6 @@
 radius = 179.937
 
 [node name="Center" type="Node2D"]
-position = Vector2( 602.055, -301.862 )
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
