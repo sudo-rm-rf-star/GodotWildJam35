@@ -1,13 +1,21 @@
 extends Node2D
 
+export(Texture) var machine_sprite: Texture
+export(String) var machine_name: String
 
 onready var _ui: MachineUI = $MachineUI
 onready var _tween: Tween = $Tween
+onready var _sprite: Sprite = $Sprite
 
-onready var _camera: Camera = get_viewport().get_camera()
 
 var _saved_camera_zoom: Vector2
-var _zoom_out: Vector2 = Vector2(3, 3)
+var _zoom_out: Vector2 = Vector2(5, 5)
+
+
+func _ready():
+	_sprite.texture = machine_sprite
+	_ui.machine_name = machine_name
+
 
 func _on_Area2D_body_entered(body: PhysicsBody2D):
 	if not body.is_in_group("player"):
