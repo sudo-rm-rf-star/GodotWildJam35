@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://things/machine/Machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://things/player/Player.tscn" type="PackedScene" id=2]
@@ -18,6 +18,9 @@
 [ext_resource path="res://Art assets/vulling/boom.png" type="Texture" id=16]
 [ext_resource path="res://Art assets/vulling/chonk penguin.png" type="Texture" id=17]
 [ext_resource path="res://Art assets/vulling/groene boom.png" type="Texture" id=18]
+[ext_resource path="res://things/dialog_ui/DialogUI.tscn" type="PackedScene" id=19]
+[ext_resource path="res://screens/game/Game.gd" type="Script" id=20]
+[ext_resource path="res://things/dialog_ui/end.ogg" type="AudioStream" id=21]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -71,6 +74,7 @@ shader_param/fog_color = Color( 0.0627451, 0.262745, 0.333333, 1 )
 shader_param/noise = ExtResource( 4 )
 
 [node name="Node2D2" type="Node2D"]
+script = ExtResource( 20 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -301,3 +305,16 @@ autoplay = true
 stream = ExtResource( 11 )
 volume_db = 1.0
 autoplay = true
+
+[node name="DialogUI" parent="." instance=ExtResource( 19 )]
+text = "You did it. By using the ancient gravity machines, you fixed the earth!
+
+Now you can return to your resting place, with the knowledge that the planet is saved once again.
+
+Hopefully they will keep it whole for a bit longer now.."
+title = "Well done!"
+audio = ExtResource( 21 )
+
+[connection signal="influence_changed" from="Platforms/Platform2/Stonehenge" to="." method="_on_Stonehenge_influence_changed"]
+[connection signal="influence_changed" from="Platforms/Platform5/Taj Mahal" to="." method="_on_Taj_Mahal_influence_changed"]
+[connection signal="influence_changed" from="Platforms/Platform9/Pyramids" to="." method="_on_Pyramids_influence_changed"]

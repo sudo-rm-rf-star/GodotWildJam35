@@ -130,6 +130,7 @@ align = 1
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 6 )
 volume_db = -4.216
+bus = "Sound"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = "Sound"

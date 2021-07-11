@@ -19,6 +19,7 @@ var _up: Vector2 = Vector2.ZERO
 var _was_in_air: bool = false
 var _is_jumping: bool = false
 var _can_jump: bool = false
+var _first_land: bool = true
 onready var _last_safe_location: Vector2 = position
 
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
@@ -26,6 +27,7 @@ onready var _jump_animation_player: AnimationPlayer = $JumpAnimationPlayer
 onready var _coyote_timer: Timer = $CoyoteTimer
 onready var _death_timer: Timer = $DeathTimer
 onready var camera: Camera2D = $Camera2D
+onready var _intro: DialogUI = $DialogUI
 
 onready var _walk_audio: AudioStreamPlayer = $Walk
 onready var _land_audio: AudioStreamPlayer = $Land
@@ -105,6 +107,10 @@ func _physics_process(delta):
 	# Save location if it is safe
 	if is_on_floor():
 		_last_safe_location = position
+		
+		if _first_land:
+			_first_land = false
+			_intro.activate()
 	
 	_velocity = move_and_slide(_velocity, _up)
 

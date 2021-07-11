@@ -159,8 +159,13 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotWildJam35"
-run/main_scene="res://screens/game/Game.tscn"
+run/main_scene="res://screens/title/Title.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

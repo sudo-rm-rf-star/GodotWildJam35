@@ -1,5 +1,7 @@
 extends Node2D
 
+signal influence_changed
+
 export(Texture) var machine_sprite: Texture
 export(String) var machine_name: String
 export(String, MULTILINE) var flavor_text: String
@@ -19,6 +21,7 @@ var _zoom_out: Vector2 = Vector2(6.5, 6.5)
 
 export(Array, NodePath) var influencees_paths: Array
 var influencees 
+onready var influence = initial_influence
 
 
 func _ready():
@@ -83,9 +86,13 @@ func _on_Area2D_body_exited(body):
 
 
 func _on_MachineUI_influence_changed(value):
+	influence = value
+	
 	if not influencees:
 		return
 		
 	for influencee in influencees:
 		influencee.set_influence(value)
+	
+	emit_signal("influence_changed")
 

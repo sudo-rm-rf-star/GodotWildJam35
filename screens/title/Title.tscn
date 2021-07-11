@@ -1,3 +1,121 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://things/machine_ui/Bungee-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Art assets/Startblad/startblad.png" type="Texture" id=2]
+[ext_resource path="res://screens/title/Title.gd" type="Script" id=3]
+[ext_resource path="res://things/machine_ui/Righteous-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 55
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.392157 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 4 )
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="startblad" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+texture = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 317.761
+margin_top = 481.067
+margin_right = 484.761
+margin_bottom = 543.067
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 1 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_left = 872.446
+margin_top = 450.709
+margin_right = 1024.45
+margin_bottom = 599.709
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 152.0
+margin_bottom = 149.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 142.0
+margin_bottom = 139.0
+custom_constants/separation = 6
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 132.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 3 )
+text = "A game by:"
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 132.0
+margin_bottom = 48.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.262745, 0.580392, 0.878431, 1 )
+text = "@CharlotteParre"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 132.0
+margin_bottom = 75.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.262745, 0.580392, 0.878431, 1 )
+text = "@JarreKnockaert"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 81.0
+margin_right = 132.0
+margin_bottom = 102.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.262745, 0.580392, 0.878431, 1 )
+text = "@RienMaertens"
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 132.0
+margin_bottom = 129.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.262745, 0.580392, 0.878431, 1 )
+text = "@SanderVhove"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label3" to="." method="_on_Label3_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label5" to="." method="_on_Label5_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label2" to="." method="_on_Label2_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label4" to="." method="_on_Label4_gui_input"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://things/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art assets/christ/christ.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://things/player/jump1.wav" type="AudioStream" id=6]
 [ext_resource path="res://things/RandomAudioPlayer/RandomAudioPlayer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://things/player/die.wav" type="AudioStream" id=8]
+[ext_resource path="res://things/dialog_ui/DialogUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://things/dialog_ui/intro.ogg" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 44.4516, 130.258 )
@@ -457,3 +459,14 @@ bus = "Sound"
 [node name="Die" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -7.73
+bus = "Sound"
+
+[node name="DialogUI" parent="." instance=ExtResource( 9 )]
+text = "66 million years ago a huge meteorite came crashed into earth. Only a quarter of all life forms survived this impact.
+
+Now, the unthinkable happened again. A huge space rock came from the sky, breaking our planet.
+
+Ancients beings created massive constructs capable of healing the earth. You are Cristo Redentor the ancient construct tasked with operating the old machines. Find these machines and mend the earth once again.
+"
+title = "Disaster!"
+audio = ExtResource( 10 )
