@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://things/platform/Platform.gd" type="Script" id=1]
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Art assets/textures/ground/ground_grass.png" type="Texture" id=14]
 [ext_resource path="res://Art assets/textures/ground/ground_bottom_left.png" type="Texture" id=15]
 [ext_resource path="res://Art assets/textures/ground/ground_bottom_right.png" type="Texture" id=16]
+[ext_resource path="res://things/Sterretjes/CPUParticles2D.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -213,6 +214,12 @@ material_overrides = {
 visible = false
 modulate = Color( 1, 1, 1, 0.3 )
 polygon = PoolVector2Array( -319.23, 128.242, -407.899, 28.9678, -262.34, -19.9911, -132.652, -57.5615, -65.2309, -70.9692, -0.918558, -77.7254, 30.715, -77.5085, 63.7562, -74.4489, 132.157, -61.3632, 264.901, -18.3602, 414.42, 45.1621, 329.105, 126.541, 217.887, 96.4223, 112.636, 77.6869, 57.2513, 72.0142, 3.72116, 70.6728, -105.283, 81.2623, -209.559, 100.15 )
+
+[node name="Sterretjes" parent="." instance=ExtResource( 17 )]
+position = Vector2( -2.82843, -197.99 )
+amount = 100
+emission_shape = 2
+emission_rect_extents = Vector2( 400, 100 )
 
 [connection signal="tween_completed" from="HoverTween" to="." method="_on_HoverTween_tween_completed"]
 [connection signal="tween_completed" from="InfluenceTween" to="." method="_on_InfluenceTween_tween_completed"]

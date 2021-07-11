@@ -20,6 +20,7 @@ var _was_in_air: bool = false
 var _is_jumping: bool = false
 var _can_jump: bool = false
 var _first_land: bool = true
+var _has_gravity: bool = true
 onready var _last_safe_location: Vector2 = position
 
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
@@ -67,7 +68,11 @@ func _physics_process(delta):
 	movement.x = -relative_velocity.x * friction
 
 	# Gravity
-	var down_force: float = gravity * delta
+	var down_force: float = 0
+	if _has_gravity:
+		down_force = gravity * delta
+	elif Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left") or Input.is_action_pressed("jump"):
+		_has_gravity = true
 	movement.y += down_force
 	$Gravity.points = PoolVector2Array([Vector2(0, 0), Vector2(0, down_force * 10)]) 
 	
@@ -112,7 +117,7 @@ func _physics_process(delta):
 			_first_land = false
 			_intro.activate()
 	
-	_velocity = move_and_slide(_velocity, _up)
+	_velocity = move_and_slide(_velocity, _up, false, 4, PI/8)
 
 #	print(_velocity)
 
@@ -166,6 +171,8 @@ func handle_audio():
 func die():
 	_death_timer.start()
 	_die_audio.play()
+	_has_gravity = false
+	_velocity = Vector2.ZERO
 	yield(_death_timer, "timeout")
 	position = _last_safe_location
 	_velocity = Vector2.ZERO
