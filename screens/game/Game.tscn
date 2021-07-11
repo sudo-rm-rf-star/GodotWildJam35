@@ -133,7 +133,7 @@ audio = ExtResource( 14 )
 influencees_paths = [ NodePath("../../Platform"), NodePath("../../Platform2"), NodePath("../../Platform8") ]
 
 [node name="Platform3" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 841.466, 1438.72 )
+position = Vector2( 1022.89, 1564.71 )
 rotation = 2.97298
 _index = 4.0
 
@@ -277,6 +277,7 @@ texture = ExtResource( 18 )
 
 [node name="Platform9" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( -350.096, 1387.48 )
+rotation = -3.03187
 _index = 5.0
 
 [node name="Pyramids" parent="Platforms/Platform9" instance=ExtResource( 1 )]
