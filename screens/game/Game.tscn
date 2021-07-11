@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://things/machine/Machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://things/player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://screens/game/T_Random_39.png" type="Texture" id=4]
 [ext_resource path="res://screens/game/backdrop.png" type="Texture" id=5]
 [ext_resource path="res://things/platform/Platform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://things/machine/piramides.png" type="Texture" id=7]
+[ext_resource path="res://things/machine/Stonehenge.png" type="Texture" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -69,44 +71,53 @@ texture = ExtResource( 5 )
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -4288.96
-margin_top = -4530.59
-margin_right = 5711.04
-margin_bottom = 5469.41
+margin_left = -4309.12
+margin_top = -4351.68
+margin_right = 5690.88
+margin_bottom = 5648.32
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Center" parent="." instance=ExtResource( 3 )]
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="Platforms" type="Node2D" parent="."]
 
-[node name="Platform" parent="Walls" instance=ExtResource( 6 )]
+[node name="Platform" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( 302.723, 20.1815 )
 rotation = 0.691359
 
-[node name="Node2D" type="Node2D" parent="Walls/Platform"]
+[node name="Start" type="Node2D" parent="Platforms/Platform"]
 position = Vector2( -120.67, 152.263 )
 
-[node name="Platform2" parent="Walls" instance=ExtResource( 6 )]
+[node name="Platform2" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( 592.034, 125.968 )
 rotation = 0.0305026
 
-[node name="Node2D" type="Node2D" parent="Walls/Platform2"]
-position = Vector2( -116.883, 360.272 )
+[node name="Machine" parent="Platforms/Platform2" instance=ExtResource( 1 )]
+position = Vector2( 10.0416, 39.8912 )
+rotation = -3.13912
+machine_sprite = ExtResource( 8 )
+machine_name = "Stone Henge"
+influencees_paths = [ NodePath("../../Platform"), NodePath("../../Platform2"), NodePath("../../Platform3") ]
 
-[node name="Platform3" parent="Walls" instance=ExtResource( 6 )]
+[node name="Start" type="Node2D" parent="Platforms/Platform2"]
+position = Vector2( -10.3755, 228.673 )
+
+[node name="Platform3" parent="Platforms" instance=ExtResource( 6 )]
 position = Vector2( 875.546, 36.1634 )
 rotation = -0.630275
 
-[node name="Node2D" type="Node2D" parent="Walls/Platform3"]
-position = Vector2( 254.36, 156.42 )
+[node name="Start" type="Node2D" parent="Platforms/Platform3"]
+position = Vector2( 82.8962, 234.243 )
 
-[node name="Machine" parent="." instance=ExtResource( 1 )]
-position = Vector2( 600.854, 166.147 )
-rotation = 3.17457
-influencees = [ NodePath("../Walls/Wall") ]
+[node name="Machine2" parent="Platforms/Platform3" instance=ExtResource( 1 )]
+position = Vector2( 9.35913, 38.2496 )
+rotation = -3.13461
+scale = Vector2( 1, 1 )
+machine_sprite = ExtResource( 7 )
+machine_name = "Pyramidamidamids"
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 16.098, 341.886 )
+position = Vector2( -91.5368, 205.661 )
 _center_object = NodePath("../Center")

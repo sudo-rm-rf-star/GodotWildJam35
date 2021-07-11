@@ -1,15 +1,32 @@
 extends Node2D
 
+export(Texture) var machine_sprite: Texture
+export(String) var machine_name: String
 
 onready var _ui: MachineUI = $MachineUI
 onready var _tween: Tween = $Tween
+onready var _sprite: Sprite = $Sprite
 
-onready var _camera: Camera = get_viewport().get_camera()
 
 var _saved_camera_zoom: Vector2
-var _zoom_out: Vector2 = Vector2(3, 3)
+var _zoom_out: Vector2 = Vector2(5, 5)
 
-export(Array, NodePath) var influencees: Array
+export(Array, NodePath) var influencees_paths: Array
+var influencees 
+
+
+func _ready():
+	_sprite.texture = machine_sprite
+	_ui.machine_name = machine_name
+
+		
+func _process(delta):
+	if not influencees:
+		influencees = Array()
+		for influencee_path in influencees_paths:
+			var influencee = get_node(influencee_path)
+			influencees.append(influencee)
+			influencee.position = influencee.start
 
 func _on_Area2D_body_entered(body: PhysicsBody2D):
 	if not body.is_in_group("player"):
@@ -40,4 +57,10 @@ func _on_Area2D_body_exited(body):
 	_tween.interpolate_property(camera, "position", camera.position, Vector2.ZERO, .4, Tween.TRANS_BACK)
 	_tween.start()
 	
+
+
+
+func _on_MachineUI_influence_changed(value):
+	for influencee in influencees:
+		influencee.set_influence(value)
 
