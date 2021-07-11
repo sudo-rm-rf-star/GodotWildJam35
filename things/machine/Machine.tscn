@@ -26,3 +26,4 @@ shape = SubResource( 1 )
 [node name="Tween" type="Tween" parent="."]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="influence_changed" from="MachineUI" to="." method="_on_MachineUI_influence_changed"]
