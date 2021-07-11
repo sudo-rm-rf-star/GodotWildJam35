@@ -33,10 +33,15 @@ func _ready():
 
 
 func _physics_process(delta):
-	var new_rotation: float = get_angle_to(_center) - PI / 2
+	_up = (position - _center).normalized()
+
+	$Up.points = PoolVector2Array([Vector2(), _up*100])
+
+	var angle = get_angle_to(_center)
+	var new_rotation: float = angle - PI / 2
 	rotate(new_rotation)
-	_up = Vector2.UP.rotated(new_rotation)
-	$Up.points = PoolVector2Array([Vector2(), _up*10])
+
+
 	
 	var movement: Vector2 = Vector2.ZERO
 	var relative_velocity = _velocity.rotated(-rotation)
@@ -69,13 +74,12 @@ func _physics_process(delta):
 	$Jump.points = PoolVector2Array([Vector2(0, 0), jump * 10])
 	movement += jump
 	
-	
-#	if is_on_floor():
-#		print("FLOOR")
-#	if is_on_wall():
-#		print("WALL")
-#	if is_on_ceiling():
-#		print("CEILING")
+	if is_on_floor():
+		print("FLOOR")
+	if is_on_wall():
+		print("WALL")
+	if is_on_ceiling():
+		print("CEILING")
 	
 	var upright_velocity = _velocity.rotated(-rotation)
 	upright_velocity += movement
@@ -96,6 +100,7 @@ func _physics_process(delta):
 		_last_safe_location = position
 	
 	_velocity = move_and_slide(_velocity, _up)
+
 #	print(_velocity)
 
 
