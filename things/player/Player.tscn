@@ -387,6 +387,9 @@ default_color = Color( 1, 0.4, 0.4, 1 )
 points = PoolVector2Array( 768.538, -34.3147 )
 default_color = Color( 1, 0.960784, 0.4, 1 )
 
+[node name="Up" type="Line2D" parent="."]
+default_color = Color( 1, 1, 1, 1 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 3 )

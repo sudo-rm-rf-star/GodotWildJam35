@@ -61,6 +61,9 @@ shader_param/fog_color = Color( 0.203922, 0.4, 0.470588, 0.462745 )
 shader_param/noise = ExtResource( 4 )
 
 [node name="Node2D2" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.639216 )
@@ -71,53 +74,96 @@ texture = ExtResource( 5 )
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -4309.12
-margin_top = -4351.68
-margin_right = 5690.88
-margin_bottom = 5648.32
+margin_left = -4927.39
+margin_top = -4603.83
+margin_right = 5072.61
+margin_bottom = 5396.17
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Center" parent="." instance=ExtResource( 3 )]
+position = Vector2( 667.738, -390.125 )
 
 [node name="Platforms" type="Node2D" parent="."]
+position = Vector2( 55.4365, 166.31 )
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 302.723, 20.1815 )
-rotation = 0.691359
+position = Vector2( 686.503, -1502.04 )
 
 [node name="Start" type="Node2D" parent="Platforms/Platform"]
-position = Vector2( -120.67, 152.263 )
+position = Vector2( 73.5613, -417.756 )
 
 [node name="Platform2" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 592.034, 125.968 )
-rotation = 0.0305026
+position = Vector2( 31.5886, -1295 )
+rotation = -0.650739
 
 [node name="Machine" parent="Platforms/Platform2" instance=ExtResource( 1 )]
-position = Vector2( 10.0416, 39.8912 )
-rotation = -3.13912
+position = Vector2( 9.33087, -176.656 )
+z_index = -1
 machine_sprite = ExtResource( 8 )
 machine_name = "Stone Henge"
 influencees_paths = [ NodePath("../../Platform"), NodePath("../../Platform2"), NodePath("../../Platform3") ]
 
 [node name="Start" type="Node2D" parent="Platforms/Platform2"]
-position = Vector2( -10.3755, 228.673 )
+position = Vector2( -342.374, -769.831 )
 
 [node name="Platform3" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 875.546, 36.1634 )
-rotation = -0.630275
+position = Vector2( 977.364, 319.842 )
+rotation = -3.53712
 
 [node name="Start" type="Node2D" parent="Platforms/Platform3"]
-position = Vector2( 82.8962, 234.243 )
+position = Vector2( 122.6, -570.639 )
 
 [node name="Machine2" parent="Platforms/Platform3" instance=ExtResource( 1 )]
-position = Vector2( 9.35913, 38.2496 )
-rotation = -3.13461
+position = Vector2( -39.2866, -167.502 )
 machine_sprite = ExtResource( 7 )
 machine_name = "Pyramidamidamids"
 flavor_text = "This is a piramid"
 
+[node name="Platform4" parent="Platforms" instance=ExtResource( 6 )]
+position = Vector2( 1339.01, -1286.4 )
+rotation = 0.5717
+
+[node name="Start" type="Node2D" parent="Platforms/Platform4"]
+position = Vector2( 73.5613, -417.756 )
+
+[node name="Platform5" parent="Platforms" instance=ExtResource( 6 )]
+position = Vector2( 1666.55, -758.117 )
+rotation = 1.47068
+
+[node name="Start" type="Node2D" parent="Platforms/Platform5"]
+position = Vector2( 73.5613, -417.756 )
+
+[node name="Platform6" parent="Platforms" instance=ExtResource( 6 )]
+position = Vector2( 1512.29, -119.617 )
+rotation = 2.12758
+
+[node name="Start" type="Node2D" parent="Platforms/Platform6"]
+position = Vector2( 73.5613, -417.756 )
+
+[node name="Platform7" parent="Platforms" instance=ExtResource( 6 )]
+position = Vector2( -270.335, -117.425 )
+rotation = -2.06461
+
+[node name="Start" type="Node2D" parent="Platforms/Platform7"]
+position = Vector2( 73.5613, -417.756 )
+
+[node name="Platform8" parent="Platforms" instance=ExtResource( 6 )]
+position = Vector2( -345.372, -755 )
+rotation = -1.34894
+
+[node name="Start" type="Node2D" parent="Platforms/Platform8"]
+position = Vector2( 73.5613, -417.756 )
+
+[node name="Platform9" parent="Platforms" instance=ExtResource( 6 )]
+position = Vector2( 289.694, 346.437 )
+rotation = -2.85969
+
+[node name="Start" type="Node2D" parent="Platforms/Platform9"]
+position = Vector2( 73.5613, -417.756 )
+
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -91.5368, 205.661 )
+position = Vector2( 668.407, -2328.76 )
 _center_object = NodePath("../Center")

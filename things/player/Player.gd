@@ -35,7 +35,8 @@ func _ready():
 func _physics_process(delta):
 	var new_rotation: float = get_angle_to(_center) - PI / 2
 	rotate(new_rotation)
-	_up = -Vector2.UP.rotated(new_rotation)
+	_up = Vector2.UP.rotated(new_rotation)
+	$Up.points = PoolVector2Array([Vector2(), _up*10])
 	
 	var movement: Vector2 = Vector2.ZERO
 	var relative_velocity = _velocity.rotated(-rotation)

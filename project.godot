@@ -126,7 +126,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "DialogUI": "",
-"MachineUI": ""
+"MachineUI": "",
 "RMS2D_Material": "",
 "RMS2D_VertexProperties": "",
 "RMS2D_VertexPropertiesArray": "",
