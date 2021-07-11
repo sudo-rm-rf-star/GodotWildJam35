@@ -64,7 +64,7 @@ shader_param/starting_amplitude = 0.5
 shader_param/starting_frequency = 0.1
 shader_param/shift = -0.2
 shader_param/velocity = Vector2( 0.05, 0.05 )
-shader_param/fog_color = Color( 0.0627451, 0.262745, 0.333333, 0.862745 )
+shader_param/fog_color = Color( 0.0627451, 0.262745, 0.333333, 1 )
 shader_param/noise = ExtResource( 4 )
 
 [node name="Node2D2" type="Node2D"]
@@ -93,7 +93,7 @@ __meta__ = {
 }
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( -911.672, 1953.37 )
+position = Vector2( 1768.93, 624.395 )
 _center_object = NodePath("../Center")
 
 [node name="Center" parent="." instance=ExtResource( 3 )]
@@ -107,10 +107,10 @@ __meta__ = {
 _center_object = NodePath("../Center")
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( -93.4531, -1647.24 )
+position = Vector2( -425.696, -1488.67 )
 
 [node name="Platform2" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( -1574.92, -1525.05 )
+position = Vector2( -1212.47, -966.276 )
 rotation = -0.61874
 _index = 8.0
 
@@ -126,16 +126,15 @@ Maybe you never saw the panel because you were not looking for it?
 
 An enormous lever draws your attention..."
 audio = ExtResource( 14 )
-initial_influence = 1.0
 influencees_paths = [ NodePath("../../Platform"), NodePath("../../Platform2"), NodePath("../../Platform8") ]
 
 [node name="Platform3" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 222.284, 1657.7 )
+position = Vector2( 841.466, 1438.72 )
 rotation = 2.97298
 _index = 4.0
 
 [node name="Platform4" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 775.748, -1139.23 )
+position = Vector2( 1591.26, -1637.6 )
 rotation = 0.702826
 _index = 1.0
 
@@ -152,11 +151,11 @@ flavor_text = "You see the great dome of the Taj Mahal and recall siting in its 
 
 The dome... seems to be able to rotate! Try turning it, maybe it does something."
 audio = ExtResource( 15 )
-initial_influence = 1.0
+initial_influence = 0.4
 influencees_paths = [ NodePath("../../Platform4"), NodePath(".."), NodePath("../../Platform6") ]
 
 [node name="Platform6" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 1223.36, 1117.57 )
+position = Vector2( 1510.3, 551.245 )
 rotation = 2.13642
 _index = 3.0
 
@@ -165,12 +164,12 @@ position = Vector2( -1574.49, 974.382 )
 _index = 6.0
 
 [node name="Platform8" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( -1696.85, 14.4592 )
+position = Vector2( -1628.89, 14.4592 )
 rotation = -1.53096
 _index = 7.0
 
 [node name="Platform9" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( -712.543, 1402.58 )
+position = Vector2( -350.096, 1387.48 )
 _index = 5.0
 
 [node name="Pyramids" parent="Platforms/Platform9" instance=ExtResource( 1 )]
@@ -183,7 +182,6 @@ Wait, that is not a normal sundial! It is a large lever.
 
 Do you want to pull it? Should you?"
 audio = ExtResource( 13 )
-initial_influence = 0.4
 influencees_paths = [ NodePath("../../Platform3"), NodePath(".."), NodePath("../../Platform7") ]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
