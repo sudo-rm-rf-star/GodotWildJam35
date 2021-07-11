@@ -50,7 +50,7 @@ func _physics_process(delta):
 		if abs(relative_velocity.x) < _speed_stop:
 			friction = 1
 			
-	printt(abs(relative_velocity.x), friction)
+#	printt(abs(relative_velocity.x), friction)
 	movement.x = -relative_velocity.x * friction
 
 	# Gravity

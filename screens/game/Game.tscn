@@ -114,9 +114,9 @@ position = Vector2( 82.8962, 234.243 )
 [node name="Machine2" parent="Platforms/Platform3" instance=ExtResource( 1 )]
 position = Vector2( 9.35913, 38.2496 )
 rotation = -3.13461
-scale = Vector2( 1, 1 )
 machine_sprite = ExtResource( 7 )
 machine_name = "Pyramidamidamids"
+flavor_text = "This is a piramid"
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( -91.5368, 205.661 )

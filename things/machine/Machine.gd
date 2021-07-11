@@ -2,10 +2,13 @@ extends Node2D
 
 export(Texture) var machine_sprite: Texture
 export(String) var machine_name: String
+export(String, MULTILINE) var flavor_text: String
+export(AudioStream) var audio: AudioStream
 
 onready var _ui: MachineUI = $MachineUI
 onready var _tween: Tween = $Tween
 onready var _sprite: Sprite = $Sprite
+onready var _dialog: DialogUI = $DialogUI
 
 
 var _saved_camera_zoom: Vector2
@@ -18,8 +21,12 @@ var influencees
 func _ready():
 	_sprite.texture = machine_sprite
 	_ui.machine_name = machine_name
+	
+	_dialog.text = flavor_text
+	_dialog.title = machine_name
+	_dialog.audio = audio
 
-		
+
 func _process(delta):
 	if not influencees:
 		influencees = Array()
@@ -32,10 +39,13 @@ func _on_Area2D_body_entered(body: PhysicsBody2D):
 	if not body.is_in_group("player"):
 		return
 	
-	var camera = body.camera
+	if is_instance_valid(_dialog):
+		_dialog.activate()
+		yield(_dialog, "dismissed")
 	
 	_ui.activate()
 	
+	var camera = body.camera
 	_saved_camera_zoom = camera.zoom
 	
 	_tween.remove_all()
@@ -48,10 +58,13 @@ func _on_Area2D_body_exited(body):
 	if not body.is_in_group("player"):
 		return
 	
-	var camera = body.camera
-	
+	if is_instance_valid(_dialog):
+		_dialog.deactivate()
+		return
+
 	_ui.deactivate()
 	
+	var camera = body.camera
 	_tween.remove_all()
 	_tween.interpolate_property(camera, "zoom", camera.zoom, _saved_camera_zoom, .4, Tween.TRANS_SINE)
 	_tween.interpolate_property(camera, "position", camera.position, Vector2.ZERO, .4, Tween.TRANS_BACK)
