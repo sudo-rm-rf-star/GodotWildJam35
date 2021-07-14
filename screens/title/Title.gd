@@ -23,3 +23,8 @@ func _on_Label5_gui_input(event):
 func _on_Label4_gui_input(event):
 	if event as InputEventMouseButton and not event.is_pressed():
 		OS.shell_open("https://twitter.com/SanderVhove")
+
+
+func _on_Label8_gui_input(event: InputEvent) -> void:
+	if event as InputEventMouseButton and not event.is_pressed():
+		OS.shell_open("https://www.patreon.com/sandervanhove")

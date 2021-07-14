@@ -169,7 +169,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/rmsmartshape/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [input]
 

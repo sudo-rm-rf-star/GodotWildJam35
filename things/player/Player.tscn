@@ -462,7 +462,7 @@ volume_db = -7.73
 bus = "Sound"
 
 [node name="DialogUI" parent="." instance=ExtResource( 9 )]
-text = "66 million years ago a huge meteorite came crashed into earth. Only a quarter of all life forms survived this impact.
+text = "66 million years ago a huge meteorite came crashing into earth. Only a quarter of all life forms survived this impact.
 
 Now, the unthinkable happened again. A huge space rock came from the sky, breaking our planet.
 

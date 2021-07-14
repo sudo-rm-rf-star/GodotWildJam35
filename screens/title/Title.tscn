@@ -10,7 +10,7 @@ size = 55
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 0.392157 )
+bg_color = Color( 0, 0, 0, 0.705882 )
 
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
@@ -38,40 +38,53 @@ __meta__ = {
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-margin_left = 872.446
-margin_top = 450.709
-margin_right = 1024.45
-margin_bottom = 599.709
+margin_left = 612.988
+margin_top = 460.448
+margin_right = 1023.99
+margin_bottom = 660.448
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-margin_right = 152.0
-margin_bottom = 149.0
+margin_right = 411.002
+margin_bottom = 200.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 142.0
-margin_bottom = 139.0
+margin_right = 401.0
+margin_bottom = 190.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 391.0
+margin_bottom = 180.0
 custom_constants/separation = 6
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 132.0
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 391.0
 margin_bottom = 21.0
 custom_fonts/font = SubResource( 3 )
 text = "A game by:"
 
-[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 27.0
+margin_right = 391.0
+margin_bottom = 73.0
+custom_constants/separation = 38
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 132.0
-margin_bottom = 48.0
+margin_bottom = 46.0
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 132.0
+margin_bottom = 21.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
@@ -81,10 +94,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 54.0
+[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 25.0
 margin_right = 132.0
-margin_bottom = 75.0
+margin_bottom = 46.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
@@ -94,28 +107,71 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 81.0
-margin_right = 132.0
-margin_bottom = 102.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 170.0
+margin_right = 289.0
+margin_bottom = 46.0
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 119.0
+margin_bottom = 21.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.262745, 0.580392, 0.878431, 1 )
 text = "@RienMaertens"
 
-[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 108.0
-margin_right = 132.0
-margin_bottom = 129.0
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 25.0
+margin_right = 119.0
+margin_bottom = 46.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.262745, 0.580392, 0.878431, 1 )
 text = "@SanderVhove"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 79.0
+margin_right = 391.0
+margin_bottom = 100.0
+
+[node name="Label6" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 232.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 3 )
+text = "Sander would like to thank his"
+
+[node name="Label8" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 236.0
+margin_right = 300.0
+margin_bottom = 21.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.262745, 0.580392, 0.878431, 1 )
+text = "Patreon"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 304.0
+margin_right = 391.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 3 )
+text = "subscriber:"
+
+[node name="Label8" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 106.0
+margin_right = 391.0
+margin_bottom = 127.0
+custom_fonts/font = SubResource( 3 )
+text = "Gilles De Mey"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label3" to="." method="_on_Label3_gui_input"]
-[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label5" to="." method="_on_Label5_gui_input"]
-[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label2" to="." method="_on_Label2_gui_input"]
-[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/Label4" to="." method="_on_Label4_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/Label3" to="." method="_on_Label3_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/Label5" to="." method="_on_Label5_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Label2" to="." method="_on_Label2_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Label4" to="." method="_on_Label4_gui_input"]
+[connection signal="gui_input" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Label8" to="." method="_on_Label8_gui_input"]

@@ -50,20 +50,20 @@ func _physics_process(delta):
 	rotate(new_rotation)
 
 
-	
+
 	var movement: Vector2 = Vector2.ZERO
 	var relative_velocity = _velocity.rotated(-rotation)
 #	print(relative_velocity)
 	$Velocity.points = PoolVector2Array([Vector2(0, 0), relative_velocity])
-	
+
 	# Friction
 	var friction = _friction_air
 	if is_on_floor() and not (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 		friction = _friction_floor
-		
+
 		if abs(relative_velocity.x) < _speed_stop:
 			friction = 1
-			
+
 #	printt(abs(relative_velocity.x), friction)
 	movement.x = -relative_velocity.x * friction
 
@@ -74,49 +74,49 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left") or Input.is_action_pressed("jump"):
 		_has_gravity = true
 	movement.y += down_force
-	$Gravity.points = PoolVector2Array([Vector2(0, 0), Vector2(0, down_force * 10)]) 
-	
+	$Gravity.points = PoolVector2Array([Vector2(0, 0), Vector2(0, down_force * 10)])
+
 	# X movement
 	var sideways = handle_sideways_movement(delta, relative_velocity)
 	$Sideways.points = PoolVector2Array([Vector2(0, 0), sideways * 10])
 	movement += sideways
-	
+
 	# Jumping
 	var jump = handle_jump()
 	$Jump.points = PoolVector2Array([Vector2(0, 0), jump * 10])
 	movement += jump
-	
+
 #	if is_on_floor():
 #		print("FLOOR")
 #	if is_on_wall():
 #		print("WALL")
 #	if is_on_ceiling():
 #		print("CEILING")
-	
+
 	var upright_velocity = _velocity.rotated(-rotation)
 	upright_velocity += movement
-	
+
 	upright_velocity.x = clamp(upright_velocity.x, -_max_speed, _max_speed)
 
 	_velocity = upright_velocity.rotated(rotation)
-	
+
 	if not _was_in_air and not is_on_floor():
 		_coyote_timer
 		_coyote_timer.start()
-		
+
 	handle_animations()
 	handle_audio()
-		
+
 	_was_in_air = !is_on_floor()
-	
+
 	# Save location if it is safe
 	if is_on_floor():
 		_last_safe_location = position
-		
+
 		if _first_land:
 			_first_land = false
 			_intro.activate()
-	
+
 	_velocity = move_and_slide(_velocity, _up, false, 4, PI/8)
 
 #	print(_velocity)
@@ -127,7 +127,7 @@ func handle_jump() -> Vector2:
 		return Vector2.ZERO
 	if not is_on_floor() and _coyote_timer.is_stopped():
 		return Vector2.ZERO
-	
+
 	_is_jumping = true
 	return Vector2(0, -_jump_strength)
 
@@ -137,7 +137,7 @@ func handle_sideways_movement(delta: float, relative_velocity: Vector2) -> Vecto
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		0
 	)
-	
+
 	return _direction * _speed * delta
 
 
@@ -157,16 +157,16 @@ func handle_animations():
 func handle_audio():
 	if (is_on_floor() or not _coyote_timer.is_stopped()) and Input.is_action_just_pressed("jump"):
 		_jump_audio.play()
-		
+
 	if is_on_floor() and _was_in_air and _coyote_timer.is_stopped():
 		_land_audio.play()
-	
+
 	if (is_on_floor() or not _coyote_timer.is_stopped()) and (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")):
 		if not _walk_audio.playing:
 			_walk_audio.play()
 	else:
 		_walk_audio.stop()
-	
+
 
 func die():
 	_death_timer.start()
